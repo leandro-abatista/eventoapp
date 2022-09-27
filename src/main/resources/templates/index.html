@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+		xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+  <link rel="stylesheet" href="style/style.css">
+  <title>EventosApp</title>
+</head>
+<body>
+
+	<th:block th:include="principal"></th:block>
+	
+	<div class="row">
+		<div class="col s12 m4">
+			<h5 style="background: #FF8C00; border-radius: 3px; padding: 5px; text-align: center;">
+				Lista de Eventos
+			</h5>
+		</div>
+	</div>
+	
+	<div class="card-content grey lighten-4 container">
+		<table id="table-1" class="tabelaEvento">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Nome</th>
+					<th>Local</th>
+					<th>Data</th>
+					<th>Horário Início</th>
+					<th>Horário Fim</th>
+					<th>Deletar</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="evento : ${eventos}">
+					<td><a th:href="${(#mvc.url('EC#detalhesEvento').arg(0, evento.id)).build()}"><span th:text="${evento.id}"></span></a></td>
+				    <td><span th:text="${evento.nome}"></span></td>
+					<td><span th:text="${evento.local}"></span></td>
+					<td><span th:text="${evento.data}"></span></td>
+					<td><span th:text="${evento.horarioInicio}"></span></td>
+					<td><span th:text="${evento.horarioFim}"></span></td>
+					<td>
+						<a class="btn-floating  waves-effect waves-light red" th:href="${(#mvc.url('EC#deletarEvento').arg(0, evento.id)).build()}">
+							<i class="material-icons left">delete_forever</i>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<script type="text/javascript" src="https://code.jquery.com/query-3.2.1.min.js"></script>
+    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+</body>
+
+</html>

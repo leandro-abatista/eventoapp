@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+		xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+  <link rel="stylesheet" href="style/style.css">
+  <title>EventosApp</title>
+</head>
+<body>
+
+	<th:block th:include="principal"></th:block>
+	
+	<div class="row">
+		<div class="col s12 m4">
+			<h5 style="background: #FF8C00; border-radius: 3px; padding: 5px; text-align: center;">
+				Detalhes do Evento
+			</h5>
+		</div>
+	</div>
+
+	<div class="row">
+			<div class="card-content grey lighten-4 container" style="font-size: 16px; color: black; font-weight: bold;">
+
+				<div th:each="evento : ${evento}" class="detalhesEvento">
+
+					<p>
+						ID : <span th:text="${evento.id}"></span>
+					</p>
+					<p>
+						Nome : <span th:text="${evento.nome}"></span>
+					</p>
+					<p>
+						Local : <span th:text="${evento.local}"></span>
+					</p>
+					<p>
+						Data : <span th:text="${evento.data}"></span>
+					</p>
+					<p>
+						Horário Início : <span th:text="${evento.horarioInicio}"></span>
+					</p>
+					<p>
+						Horário Fim : <span th:text="${evento.horarioFim}"></span>
+					</p>
+
+				</div>
+			</div>
+		</div>
+	
+	<th:block th:include="mensagemValidacao"></th:block>
+	
+      <div class="card-content grey lighten-4 container">
+		<form class="formularioConvidado" id="formularioConvidado" method="post">
+			
+			<div class="row">
+				<div class="input-field col s5">
+					Nome: <input type="text" value="" name="nome" id="nome">
+				</div>
+				
+				<div class="input-field col s3">
+					CPF: <input id="cpf" type="text" value="" name="cpf" maxlength="14">
+				</div>
+			
+				<div class="input-field col s4">
+					E-mail: <input type="text" value="" name="email">	
+				</div>
+			</div>
+			
+			<div class="row">
+				<div style="margin-bottom: 20px">
+				<button class="btn waves-effect waves-light" type="submit" id="btnSalvar" onclick="focar()">
+					<i class="material-icons right">add</i>
+					Adicionar
+				</button>
+				</div>
+			</div>
+		
+			</form>
+		</div>
+	
+	<div class="card-content grey lighten-4 container">
+		<table id="table-2" class="tabelaConvidado">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Nome Convidado</th>
+					<th>CPF</th>
+					<th>E-mail</th>
+					<th>Deletar</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="convidado : ${convidados}">
+					<td><span th:text="${convidado.id}"></span></td>
+					<td><span th:text="${convidado.nome}"></span></td>
+				    <td><span th:text="${convidado.cpf}"></span></td>
+					<td><span th:text="${convidado.email}"></span></td>
+					<td>
+						<a class="btn-floating  waves-effect waves-light red" th:href="${(#mvc.url('EC#deletarConvidado').arg(0, convidado.id)).build()}">
+							<i class="material-icons left">delete_forever</i>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</body>
+</html>

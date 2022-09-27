@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+		xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+  <link rel="stylesheet" href="style/style.css">
+  <title>EventosApp</title>
+</head>
+<body>
+	
+	<th:block th:include="principal"></th:block>
+	
+	<div class="row">
+		<div class="col s12 m4">
+			<h5 style="background: #FF8C00; border-radius: 3px; padding: 5px; text-align: center;">
+				Cadastro de Eventos
+			</h5>
+		</div>
+	</div>
+	
+	<th:block th:include="mensagemValidacao"></th:block>
+	
+	<div class="card-content grey lighten-4 container">
+		<form class="formularioEvento" id="formularioEvento" method="post">
+			
+			<div class="row">
+				<div class="input-field col s6">
+					Nome: <input type="text" value="" name="nome">
+				</div>
+				
+				<div class="input-field col s6">
+					Local: <input type="text" value="" name="local">
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="input-field col s4">
+					Data: <input type="date" value="" name="data">	
+				</div>
+			
+				<div class="input-field col s4">
+					Horário Início: <input type="time" value="" name="horarioInicio">
+				</div>
+				<div class="input-field col s4">
+					Horário Fim: <input type="time" value="" name="horarioFim">
+				</div>
+			</div>
+			
+			<div class="row">
+				<button class="btn waves-effect waves-light" type="submit" id="btnSalvar">
+					<i class="material-icons right">check</i>
+					Salvar
+				</button>
+			
+				<a href="/eventos" class="waves-effect waves-light btn">
+					<i class="material-icons left">format_list_bulleted</i>Listar Eventos
+				</a>
+			</div>
+		</form>
+	</div>
+
+
+	<script type="text/javascript" src="https://code.jquery.com/query-3.2.1.min.js"></script>
+    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+</body>
+
+</html>
